@@ -11,15 +11,16 @@
 ### 背景除去
 
 ## インストール
+- 想定OS: Windows
 
 1. pyenv をインストールする
 
-- 参考: https://qiita.com/koooooo/items/b21d87ffe2b56d0c589b
+- 参考: [pyenvのWindowsへのインストール](https://zenn.dev/lot36z/articles/1c734bde03677c)
 
-2. pyenv で python3.10.13 をインストールする
+2. pyenv で python3.10.11 をインストールする
 
 ```bash
-pyenv install 3.10.13
+pyenv install 3.10.11
 ```
 
 3. venv で仮想環境を作成する
@@ -29,7 +30,11 @@ python -m venv .venv
 ```
 
 4. 仮想環境を有効化する
-
+- cmd.exeの場合
 ```bash
-source .venv/bin/activate
+.venv\Scripts\activate.bat
+```
+- PowerShellの場合
+```bash
+.venv\Scripts\Activate.ps1
 ```
