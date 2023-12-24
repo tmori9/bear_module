@@ -8,7 +8,13 @@
 
 - ヒグマ動画からヒグマの画像を抽出するプログラム
 
-### 背景除去
+`python videoBearDetector/videoBearDetector.py -i <input_folder>`
+example: `python videoBearDetector/videoBearDetector.py -i videoBearDetector/input_video`
+
+### trimBearImage
+- ヒグマの画像から背景を除去し、ヒグマのみの画像を切り取るプログラム
+`python trimBearImage/trimBearImage.py -i <input_folder>`
+example: `python trimBearImage/trimBearImage.py -i trimBearImage/input_video`
 
 ## インストール
 - 想定OS: Windows
