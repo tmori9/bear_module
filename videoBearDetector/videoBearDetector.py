@@ -46,8 +46,8 @@ def main():
     # 出力フォルダの作成
     output_bear_folder = Path(f"{args.output}/bear")
     output_bear_folder.mkdir(parents=True, exist_ok=True)
-    output_no_bear_folder = Path(f"{args.output}/no_bear")
-    output_no_bear_folder.mkdir(parents=True, exist_ok=True)
+    output_not_bear_folder = Path(f"{args.output}/not_bear")
+    output_not_bear_folder.mkdir(parents=True, exist_ok=True)
 
     for file_name in input_folder.glob("*"):
         # 拡張子が動画の場合
@@ -80,7 +80,7 @@ def main():
             cap.release()
             # クマが検出されなかった場合
             if not bear_detected:
-                file_name.rename(output_no_bear_folder / file_name.name)
+                file_name.rename(output_not_bear_folder / file_name.name)
         else:
             print(f"{file_name} is not movie file.")
             continue
