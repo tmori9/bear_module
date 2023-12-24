@@ -21,6 +21,13 @@ def get_args():
         type=str,
         help="This is input video folder.",
     )
+    parser.add_argument(
+        "-o",
+        "--output",
+        default="videoBearDetector/output_video",
+        type=str,
+        help="This is output video folder.",
+    )
 
     return parser.parse_args()
 
@@ -37,9 +44,9 @@ def main():
     movie_extensions = [".mp4", ".MP4", ".mov", ".MOV"]
 
     # 出力フォルダの作成
-    output_bear_folder = Path("videoBearDetector/output_video/bear")
+    output_bear_folder = Path(f"{args.output}/bear")
     output_bear_folder.mkdir(parents=True, exist_ok=True)
-    output_no_bear_folder = Path("videoBearDetector/output_video/no_bear")
+    output_no_bear_folder = Path(f"{args.output}/no_bear")
     output_no_bear_folder.mkdir(parents=True, exist_ok=True)
 
     for file_name in input_folder.glob("*"):
@@ -48,7 +55,7 @@ def main():
             print(f"file name: {file_name}")
             cap = cv2.VideoCapture(str(file_name))
             movie_fps = cap.get(cv2.CAP_PROP_FPS)
-            extract_frame = movie_fps  # 1fps = 5フレームに1回抽出
+            extract_frame = movie_fps  # 1fps = 1フレームに1回抽出
             frame_idx = 0
             bear_detected = False
             while True:
