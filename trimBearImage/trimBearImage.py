@@ -31,6 +31,13 @@ def get_args():
         type=str,
         help="This is input video folder.",
     )
+    parser.add_argument(
+        "-o",
+        "--output",
+        default="trimBearImage/output_image",
+        type=str,
+        help="This is output image folder.",
+    )
 
     return parser.parse_args()
 
@@ -55,16 +62,17 @@ def find_bbox(mask):
     return (ymin, xmin, ymax, xmax)
 
 
-def save_no_bg_image(file_name: str, path_num: int, results):
+def save_no_bg_image(out_folder: str, file_name: str, path_num: int, results):
     """
     maskを用いて背景を除去した画像を保存する
 
     Parameters:
+    - out_folder: 保存するフォルダの名前
     - file_name: 入力する動画の名前 (拡張子なし)
     - path_num: 保存する画像の番号
     - results: YOLOの出力
     """
-    save_path = Path(f"trimBearImage/output_image/{file_name}")
+    save_path = Path(f"{out_folder}/{file_name}")
     save_path.mkdir(parents=True, exist_ok=True)
     for result in results:
         if result.masks:
@@ -116,7 +124,7 @@ def main():
                         save_crop=False,
                         classes=21,
                     )
-                    save_no_bg_image(file_name.stem, path_num, results)
+                    save_no_bg_image(args.output, file_name.stem, path_num, results)
                 frame_idx += 1
 
 

@@ -2,7 +2,6 @@
 *.pt
 videoBearDetector/input_video/*
 trimBearImage/input_video/*
-trimBearImage/output_image/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
