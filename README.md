@@ -28,6 +28,9 @@ python trimBearImage/trimBearImage.py -i trimBearImage/input_video -o trimBearIm
 
 # example: fpsを指定する場合
 python trimBearImage/trimBearImage.py -i trimBearImage/input_video -o trimBearImage/output_image -f 5
+
+# exapmle: フォルダを作成しない場合
+python trimBearImage/trimBearImage.py -i trimBearImage/input_video
 ```
 
 ## インストール

@@ -6,6 +6,7 @@ from itertools import chain
 
 from pathlib import Path
 import cv2
+from PIL import Image
 
 
 def get_args():
@@ -78,6 +79,8 @@ def save_no_bg_image(out_folder: str, file_name: str, path_num: int, results):
         if result.masks:
             masks = result.masks.data.cpu()
             ori_img = result.orig_img[:, :, [2, 1, 0]]
+            ori_img_pil = Image.fromarray(ori_img)
+            ori_img_pil.save(save_path / f"{file_name}_{path_num:04}.png")  # 画像全体を保存
             for j, mask in enumerate(masks):
                 mask = mask.numpy()
                 mask_resize = cv2.resize(mask, (ori_img.shape[1], ori_img.shape[0]))
@@ -90,7 +93,9 @@ def save_no_bg_image(out_folder: str, file_name: str, path_num: int, results):
                 new[mask_bool] = ori_img[mask_bool]
                 new = new[y_min : y_max + 1, x_min : x_max + 1]
                 image = ToPILImage()(new)
-                image.save(save_path / f"{file_name}_{path_num:04}_{j}_crop.png")
+                image.save(
+                    save_path / f"{file_name}_{path_num:04}_{j}_crop.png"
+                )  # 背景なし画像を保存
 
 
 def main():
