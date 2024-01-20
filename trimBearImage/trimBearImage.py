@@ -34,7 +34,7 @@ def get_args():
     parser.add_argument(
         "-o",
         "--output",
-        default="trimBearImage/output_image",
+        default="./",
         type=str,
         help="This is output image folder.",
     )
@@ -72,7 +72,7 @@ def save_no_bg_image(out_folder: str, file_name: str, path_num: int, results):
     - path_num: 保存する画像の番号
     - results: YOLOの出力
     """
-    save_path = Path(f"{out_folder}/{file_name}")
+    save_path = Path(f"{out_folder}")
     save_path.mkdir(parents=True, exist_ok=True)
     for result in results:
         if result.masks:
@@ -90,7 +90,7 @@ def save_no_bg_image(out_folder: str, file_name: str, path_num: int, results):
                 new[mask_bool] = ori_img[mask_bool]
                 new = new[y_min : y_max + 1, x_min : x_max + 1]
                 image = ToPILImage()(new)
-                image.save(save_path / f"{path_num:04}_{j}.png")
+                image.save(save_path / f"{file_name}_{path_num:04}_{j}_crop.png")
 
 
 def main():
