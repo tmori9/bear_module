@@ -1,6 +1,6 @@
 # bear_module
 
-ヒグマ動画抽出プログラムと背景除去・画像切り取りプログラム
+Bear video extraction and background removal
 
 ## モジュールの説明
 
