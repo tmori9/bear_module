@@ -19,6 +19,13 @@ python videoBearDetector/videoBearDetector.py -i videoBearDetector/input_video -
 ### trimBearImage
 - 動画が入ったフォルダから背景を除去したヒグマの画像を切り取るプログラム
 - <output_folder>/<動画の名前> にヒグマの画像が保存される
+- 引数
+    - -i: 入力フォルダ
+    - -o: 出力フォルダ
+    - -f: fps (default: 2)
+    - -m: model (default: "yolov8x-seg")
+        - 実行時間順 (精度順): yolov8n-seg < yolov8s-seg < yolov8m-seg < yolov8l-seg < yolov8x-seg
+
 
 ```bash
 python trimBearImage/trimBearImage.py -i <input_folder> -o <output_folder>
