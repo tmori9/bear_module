@@ -80,7 +80,9 @@ def save_no_bg_image(out_folder: str, file_name: str, path_num: int, results):
             masks = result.masks.data.cpu()
             ori_img = result.orig_img[:, :, [2, 1, 0]]
             ori_img_pil = Image.fromarray(ori_img)
-            ori_img_pil.save(save_path / f"{file_name}_{path_num:04}.png")  # 画像全体を保存
+            ori_img_pil.save(
+                save_path / f"{file_name}_{path_num:04}.png"
+            )  # 画像全体を保存
             for j, mask in enumerate(masks):
                 mask = mask.numpy()
                 mask_resize = cv2.resize(mask, (ori_img.shape[1], ori_img.shape[0]))
@@ -121,7 +123,7 @@ def main():
                 if not ret:
                     break
                 if int(frame_idx % extract_frame) == 0:
-                    path_num = int(frame_idx // movie_fps)
+                    path_num = int(frame_idx // extract_frame)
 
                     # class 21 = bear
                     results = model.predict(
